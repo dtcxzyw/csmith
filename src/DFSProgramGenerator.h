@@ -37,7 +37,7 @@ class OutputMgr;
 
 class DFSProgramGenerator : public AbsProgramGenerator {
 public:
-	DFSProgramGenerator(int argc, char *argv[], unsigned long seed);
+	DFSProgramGenerator(int argc, char *argv[], uint64_t seed);
 
 	virtual ~DFSProgramGenerator();
 
@@ -54,7 +54,7 @@ private:
 
 	char **argv_;
 
-	unsigned long seed_;
+	uint64_t seed_;
 
 	INT64 good_count_;
 

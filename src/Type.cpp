@@ -594,8 +594,8 @@ Type::if_union_will_have_assign_ops()
 const Type*
 Type::choose_random_struct_union_type(vector<Type *> &ok_types)
 {
-	size_t sz = ok_types.size();
-	assert(sz > 0);
+	// size_t sz = ok_types.size();
+	// assert(sz > 0);
 
 	int index = rnd_upto(ok_types.size());
 	ERROR_GUARD(0);
@@ -958,8 +958,8 @@ Type::make_one_normal_field_by_enum(Enumerator<string> &enumerator, vector<const
 				vector<CVQualifiers> &all_quals, vector<const Type*> &fields,
 				vector<CVQualifiers> &quals, vector<int> &fields_length, int i)
 {
-	int types_size = all_types.size();
-	int quals_size = all_quals.size();
+	// int types_size = all_types.size();
+	// int quals_size = all_quals.size();
 	Filter *filter = SIMPLE_TYPES_PROB_FILTER;
 
 	std::ostringstream ss1, ss2;

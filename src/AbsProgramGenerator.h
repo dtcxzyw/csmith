@@ -36,7 +36,7 @@ class OutputMgr;
 
 class AbsProgramGenerator {
 public:
-	static AbsProgramGenerator* CreateInstance(int argc, char *argv[], unsigned long seed);
+	static AbsProgramGenerator* CreateInstance(int argc, char *argv[], uint64_t seed);
 
 	static AbsProgramGenerator* GetInstance();
 

@@ -46,7 +46,7 @@ public:
 
 	static bool create_output_dir(std::string dir);
 
-	virtual void OutputHeader(int argc, char *argv[], unsigned long seed);
+	virtual void OutputHeader(int argc, char *argv[], uint64_t seed);
 
 	virtual void Output();
 

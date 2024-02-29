@@ -52,10 +52,6 @@ bool		pure_rnd_flipcoin(const unsigned int p, const Filter *f = NULL, const std:
 std::string	get_prefixed_name(const std::string &name);
 std::string&	trace_depth();
 void		get_sequence(std::string &sequence);
-#if 0
-// Deprecated
-unsigned int*   rnd_shuffle(unsigned int n);
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 

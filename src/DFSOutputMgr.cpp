@@ -72,7 +72,7 @@ DFSOutputMgr::CreateInstance()
 }
 
 void
-DFSOutputMgr::OutputHeader(int argc, char *argv[], unsigned long seed)
+DFSOutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 {
 	if (!CGOptions::compact_output())
 		OutputMgr::OutputHeader(argc, argv, seed);

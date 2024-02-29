@@ -40,7 +40,7 @@
 
 RandomNumber *RandomNumber::instance_ = NULL;
 
-RandomNumber::RandomNumber(const unsigned long seed)
+RandomNumber::RandomNumber(const uint64_t seed)
 	: seed_(seed)
 {
 	unsigned int count = AbsRndNumGenerator::count();
@@ -57,7 +57,7 @@ RandomNumber::~RandomNumber()
 }
 
 void
-RandomNumber::make_all_rndnum_generators(const unsigned long seed)
+RandomNumber::make_all_rndnum_generators(const uint64_t seed)
 {
 	unsigned int count = AbsRndNumGenerator::count();
 	AbsRndNumGenerator *generator;
@@ -70,7 +70,7 @@ RandomNumber::make_all_rndnum_generators(const unsigned long seed)
 }
 
 void
-RandomNumber::CreateInstance(RNDNUM_GENERATOR rImpl, const unsigned long seed)
+RandomNumber::CreateInstance(RNDNUM_GENERATOR rImpl, const uint64_t seed)
 {
 	if (!instance_) {
 		instance_ = new RandomNumber(seed);
@@ -108,7 +108,7 @@ RandomNumber::GetRndNumGenerator(void)
 RNDNUM_GENERATOR
 RandomNumber::SwitchRndNumGenerator(RNDNUM_GENERATOR rImpl)
 {
-	unsigned int count = AbsRndNumGenerator::count();
+	unsigned int count = AbsRndNumGenerator::count();(void)(count);
 	AbsRndNumGenerator *generator = instance_->generators_[rImpl];
 	if (generator == NULL) {
 		generator = AbsRndNumGenerator::make_rndnum_generator(rImpl, instance_->seed_);

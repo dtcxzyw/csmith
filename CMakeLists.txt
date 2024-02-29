@@ -139,6 +139,8 @@ if(NOT M4)
 endif()
 message(STATUS "Check for M4 macro processor: found ${M4}")
 
+add_compile_options(-Werror)
+
 ###############################################################################
 
 add_subdirectory(doc)

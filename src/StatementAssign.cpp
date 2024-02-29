@@ -126,7 +126,7 @@ StatementAssign::make_random(CGContext &cg_context, const Type* type, const CVQu
 	assert(!type->is_const_struct_union());
 
 	FactMgr* fm = get_fact_mgr(&cg_context);
-	assert(fm);
+	assert(fm);(void)(fm);
 	// pre-generation initializations
 	Lhs *lhs = NULL;
 	Expression *e = NULL;

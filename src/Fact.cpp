@@ -98,7 +98,7 @@ Fact::abstract_fact_for_var_init(const Variable* v)
 	Lhs lhs(*v);
 	vector<const Fact*> facts;
 	int lvar_cnt = abstract_fact_for_assign(empty, &lhs, v->init, facts);
-	assert(lvar_cnt == 1);
+	assert(lvar_cnt == 1);(void)(lvar_cnt);
 
 	if (v->isArray) {
 		const ArrayVariable* av = dynamic_cast<const ArrayVariable*>(v);

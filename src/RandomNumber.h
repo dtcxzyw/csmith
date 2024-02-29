@@ -47,7 +47,7 @@ class RandomNumber
 {
 public:
 	// Make it singleton for now.
-	static void CreateInstance(RNDNUM_GENERATOR rImpl, const unsigned long seed);
+	static void CreateInstance(RNDNUM_GENERATOR rImpl, const uint64_t seed);
 
 	static RandomNumber *GetInstance();
 
@@ -79,7 +79,7 @@ public:
 	virtual std::string RandomDigits(int num);
 
 protected:
-	void make_all_rndnum_generators(const unsigned long seed);
+	void make_all_rndnum_generators(const uint64_t seed);
 
 	AbsRndNumGenerator *curr_generator_;
 
@@ -88,9 +88,9 @@ protected:
 	std::map<RNDNUM_GENERATOR, AbsRndNumGenerator*> generators_;
 
 private:
-	const unsigned long seed_;
+	const uint64_t seed_;
 
-	explicit RandomNumber(const unsigned long seed);
+	explicit RandomNumber(const uint64_t seed);
 
 	explicit RandomNumber(AbsRndNumGenerator *rndnum_generator);
 

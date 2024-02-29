@@ -758,27 +758,36 @@ Function::initialize_builtin_functions()
 	// supported type: Void, Char, UChar, Short, UShort, Int,
 	// 		   UInt, Long, ULong, Longlong, ULonglong
 	string builtin_function_strings[] = {
-		"UInt; __builtin_ia32_crc32qi; (UInt, UChar); x86",
+		"Int; __builtin_clzs; (UShort); x86",
 		"Int; __builtin_clz; (UInt); x86",
 		"Int; __builtin_clzl; (ULong); x86",
 		"Int; __builtin_clzll; (ULonglong); x86",
+
+		"Int; __builtin_ctzs; (UShort); x86",
 		"Int; __builtin_ctz; (UInt); x86",
 		"Int; __builtin_ctzl; (ULong); x86",
-                "Int; __builtin_ctzll; (ULonglong); x86",
-		"Int; __builtin_ffs; (Int); x86",
-		"Int; __builtin_ffsl; (Long); x86",
-		"Int; __builtin_ffsll; (Longlong); x86",
+        "Int; __builtin_ctzll; (ULonglong); x86",
+
+		"Int; __builtin_clrsb; (UInt); x86",
+		"Int; __builtin_clrsbl; (ULong); x86",
+		"Int; __builtin_clrsbll; (ULonglong); x86",
+
 		"Int; __builtin_parity; (UInt); x86",
 		"Int; __builtin_parityl; (ULong); x86",
 		"Int; __builtin_parityll; (ULonglong); x86",
+
 		"Int; __builtin_popcount; (UInt); x86",
 		"Int; __builtin_popcountl; (ULong); x86",
 		"Int; __builtin_popcountll; (ULonglong); x86",
+
+		"UShort; __builtin_bswap16; (UShort); x86",
 		"UInt; __builtin_bswap32; (UInt); x86",
 		"ULonglong; __builtin_bswap64; (ULonglong); x86",
-		"Int; __builtin_ctzs; (UShort); clang",
-		"Int; __builtin_clzs; (UShort); clang",
-		"UShort; __builtin_bswap16; (UShort); ppc | clang"
+
+		"UChar; __builtin_bitreverse8; (UChar); x86",
+		"UShort; __builtin_bitreverse16; (UShort); x86",
+		"UInt; __builtin_bitreverse32; (UInt); x86",
+		"ULonglong; __builtin_bitreverse64; (ULonglong); x86",
 	};
 
 	int cnt = sizeof(builtin_function_strings) / sizeof(builtin_function_strings[0]);

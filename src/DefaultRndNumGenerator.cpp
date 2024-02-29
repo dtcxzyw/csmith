@@ -69,7 +69,7 @@ DefaultRndNumGenerator::~DefaultRndNumGenerator()
  * Create singleton instance.
  */
 DefaultRndNumGenerator*
-DefaultRndNumGenerator::make_rndnum_generator(const unsigned long seed)
+DefaultRndNumGenerator::make_rndnum_generator(const uint64_t seed)
 {
 	if (impl_)
 		return impl_;

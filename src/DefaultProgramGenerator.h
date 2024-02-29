@@ -36,7 +36,7 @@ class OutputMgr;
 
 class DefaultProgramGenerator : public AbsProgramGenerator {
 public:
-	DefaultProgramGenerator(int argc, char *argv[], unsigned long seed);
+	DefaultProgramGenerator(int argc, char *argv[], uint64_t seed);
 
 	virtual ~DefaultProgramGenerator();
 
@@ -53,7 +53,7 @@ private:
 
 	char **argv_;
 
-	unsigned long seed_;
+	uint64_t seed_;
 
 	OutputMgr *output_mgr_;
 };

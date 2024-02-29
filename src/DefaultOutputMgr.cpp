@@ -191,7 +191,7 @@ DefaultOutputMgr::RandomOutputDefs()
 }
 
 void
-DefaultOutputMgr::OutputHeader(int argc, char *argv[], unsigned long seed)
+DefaultOutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 {
 	OutputMgr::OutputHeader(argc, argv, seed);
 }

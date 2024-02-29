@@ -48,7 +48,7 @@
 
 using namespace std;
 
-DFSProgramGenerator::DFSProgramGenerator(int argc, char *argv[], unsigned long seed)
+DFSProgramGenerator::DFSProgramGenerator(int argc, char *argv[], uint64_t seed)
 	: argc_(argc),
 	  argv_(argv),
 	  seed_(seed),

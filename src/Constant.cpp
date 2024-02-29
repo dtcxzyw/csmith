@@ -511,7 +511,7 @@ Constant::make_int(int v)
 bool
 Constant::compatible(const Variable *v) const
 {
-	assert(v);
+	assert(v);(void)(v);
 	if (CGOptions::expand_struct())
 		return true;
 		//return !v->is_field_var();
@@ -521,7 +521,7 @@ Constant::compatible(const Variable *v) const
 bool
 Constant::compatible(const Expression *exp) const
 {
-	assert(exp);
+	assert(exp);(void)(exp);
 	return false;
 }
 

@@ -44,7 +44,7 @@
 #include "SafeOpFlags.h"
 #include "ExtensionMgr.h"
 
-DefaultProgramGenerator::DefaultProgramGenerator(int argc, char *argv[], unsigned long seed)
+DefaultProgramGenerator::DefaultProgramGenerator(int argc, char *argv[], uint64_t seed)
 	: argc_(argc),
 	  argv_(argv),
 	  seed_(seed),

@@ -43,7 +43,7 @@ class Filter;
 class DefaultRndNumGenerator : public AbsRndNumGenerator
 {
 public:
-	static DefaultRndNumGenerator *make_rndnum_generator(const unsigned long seed);
+	static DefaultRndNumGenerator *make_rndnum_generator(const uint64_t seed);
 
 	virtual std::string get_prefixed_name(const std::string &name);
 
@@ -66,7 +66,7 @@ public:
 	virtual ~DefaultRndNumGenerator();
 
 private:
-	DefaultRndNumGenerator(const unsigned long seed, Sequence *concrete_seq);
+	DefaultRndNumGenerator(const uint64_t seed, Sequence *concrete_seq);
 
 	void add_number(int v, int bound, int k);
 
@@ -80,7 +80,7 @@ private:
 
 	virtual unsigned long genrand(void);
 
-	//void seedrand(unsigned long seed);
+	//void seedrand(uint64_t seed);
 
 	//Don't implement them
 	DISALLOW_COPY_AND_ASSIGN(DefaultRndNumGenerator);

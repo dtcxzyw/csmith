@@ -419,7 +419,7 @@ public:
 
 	void dump_default_probabilities(const std::string &fname);
 
-	void dump_actual_probabilities(const std::string &fname, unsigned long seed);
+	void dump_actual_probabilities(const std::string &fname, uint64_t seed);
 
 	Filter *get_binary_ops_prob_filter();
 private:

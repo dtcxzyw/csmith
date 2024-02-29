@@ -434,7 +434,7 @@ Block::append_return_stmt(CGContext& cg_context)
 	stms.push_back(sr);
 	fm->makeup_new_var_facts(pre_facts, fm->global_facts);
 	bool visited = sr->visit_facts(fm->global_facts, cg_context);
-	assert(visited);
+	assert(visited);(void)(visited);
 
 	fm->set_fact_in(sr, pre_facts);
 	fm->set_fact_out(sr, fm->global_facts);

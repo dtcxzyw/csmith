@@ -40,7 +40,7 @@ public:
 
 	virtual ~DFSOutputMgr();
 
-	virtual void OutputHeader(int argc, char *argv[], unsigned long seed);
+	virtual void OutputHeader(int argc, char *argv[], uint64_t seed);
 
 	virtual void OutputStructUnions(ostream& /*out*/);
 

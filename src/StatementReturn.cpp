@@ -60,7 +60,7 @@ StatementReturn::make_random(CGContext &cg_context)
 	Function *curr_func = cg_context.get_current_func();
 	assert(curr_func);
 	FactMgr* fm = get_fact_mgr(&cg_context);
-	assert(fm);
+	assert(fm);(void)(fm);
 
 	ExpressionVariable* ev = ExpressionVariable::make_random(cg_context, curr_func->return_type, &curr_func->rv->qfer, false, true);
 	// typecast, if needed.

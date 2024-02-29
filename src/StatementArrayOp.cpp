@@ -135,7 +135,7 @@ StatementArrayOp::make_random_array_init(CGContext &cg_context)
 		invalid_vars.push_back(cv);
 		cvs.push_back(cv);
 		bool read = cg_context.read_indices(cv, fm->global_facts);
-		assert(read);
+		assert(read);(void)(read);
 		cg_context.write_var(cv);
 		// put in induction variable list so that later indices have no write-write conflict
 		cg_context.iv_bounds[cv] = av->get_sizes()[i];

@@ -81,7 +81,7 @@ Lhs::make_random(CGContext &cg_context, const Type* t, const CVQualifiers* qfer,
 				ERROR_GUARD(NULL);
 				if (var) {
 					int deref_level = var->type->get_indirect_level() - t->get_indirect_level();
-					assert(!var->qfer.is_const_after_deref(deref_level));
+					assert(!var->qfer.is_const_after_deref(deref_level));(void)(deref_level);
 				}
 			}
 		}
@@ -93,7 +93,7 @@ Lhs::make_random(CGContext &cg_context, const Type* t, const CVQualifiers* qfer,
 			var = VariableSelector::select(Effect::WRITE, cg_context, t, &new_qfer, dummy, eDerefExact);
 			ERROR_GUARD(NULL);
 			int deref_level = var->type->get_indirect_level() - t->get_indirect_level();
-			assert(!var->qfer.is_const_after_deref(deref_level));
+			assert(!var->qfer.is_const_after_deref(deref_level));(void)(deref_level);
 		}
 		ERROR_GUARD(NULL);
 		assert(var);

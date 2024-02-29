@@ -61,7 +61,7 @@ public:
 
 	static void set_curr_func(const std::string &fname);
 
-	virtual void OutputHeader(int argc, char *argv[], unsigned long seed) = 0;
+	virtual void OutputHeader(int argc, char *argv[], uint64_t seed) = 0;
 
 	virtual void OutputStructUnions(ostream& /* out */) {};
 

@@ -47,9 +47,9 @@ enum RNDNUM_GENERATOR {
 class AbsRndNumGenerator
 {
 public:
-	static AbsRndNumGenerator *make_rndnum_generator(RNDNUM_GENERATOR impl, const unsigned long seed);
+	static AbsRndNumGenerator *make_rndnum_generator(RNDNUM_GENERATOR impl, const uint64_t seed);
 
-	static void seedrand(const unsigned long seed);
+	static void seedrand(const uint64_t seed);
 
 	static const char* get_hex1();
 

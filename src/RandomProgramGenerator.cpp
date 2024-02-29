@@ -107,7 +107,7 @@ using namespace std;
 
 // Program seed - allow user to regenerate the same program on different
 // platforms.
-static unsigned long g_Seed = 0;
+static uint64_t g_Seed = 0;
 
 // ----------------------------------------------------------------------------
 static void
@@ -391,8 +391,8 @@ main(int argc, char **argv)
 			i++;
 			arg_check(argc, i);
 
-			if (!parse_int_arg(argv[i], &g_Seed))
-				exit(-1);
+			// if (!parse_int_arg(argv[i], &g_Seed))
+			// 	exit(-1);
 			continue;
 		}
 

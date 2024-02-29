@@ -162,7 +162,7 @@ StatementFor::make_iteration(CGContext& cg_context, StatementAssign*& init, Expr
 	FactMgr* fm = get_fact_mgr(&cg_context);
 	assert(fm);
 	Block* blk = cg_context.get_current_block();
-	assert(blk);
+	assert(blk);(void)(blk);
 
 	// save a copy of facts env and context
 	vector<const Fact*> facts_copy = fm->global_facts;
@@ -182,7 +182,7 @@ StatementFor::make_iteration(CGContext& cg_context, StatementAssign*& init, Expr
 	} while (true);
 
 	bool read = cg_context.read_indices(var, fm->global_facts);
-	assert(read);
+	assert(read);(void)(read);
 	cg_context.write_var(var);
 	cg_context.read_var(var);
 
@@ -230,7 +230,7 @@ StatementFor::make_iteration(CGContext& cg_context, StatementAssign*& init, Expr
 	init = new StatementAssign(cg_context.get_current_block(), *lhs, *c_init, eSimpleAssign, flags1);
 	ERROR_GUARD_AND_DEL3(NULL, c_init, lhs, flags1);
 	bool visited = init->visit_facts(fm->global_facts, cg_context);
-	assert(visited);
+	assert(visited);(void)(visited);
 
 	assert(var);
 	ExpressionVariable *v = new ExpressionVariable(*var);

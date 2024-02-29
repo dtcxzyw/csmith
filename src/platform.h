@@ -30,9 +30,11 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
+#include <cstdint>
+
 ///////////////////////////////////////////////////////////////////////////////
 
-unsigned long platform_gen_seed();
+uint64_t platform_gen_seed();
 
 bool create_dir(const char* dir);
 

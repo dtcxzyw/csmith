@@ -250,7 +250,7 @@ OutputMgr::OutputTail(std::ostream &out)
 }
 
 void
-OutputMgr::OutputHeader(int argc, char *argv[], unsigned long seed)
+OutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 {
 	std::ostream &out = get_main_out();
 	if (CGOptions::concise()) {

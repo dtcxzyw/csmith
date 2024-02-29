@@ -27,6 +27,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <random>
 #if HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -35,19 +36,12 @@
 
 #include <cassert>
 #include <cstdlib>
-#include <iostream>
 
 #include "DefaultRndNumGenerator.h"
 #include "DFSRndNumGenerator.h"
+#include "pcg-cpp/include/pcg_random.hpp"
 
 using namespace std;
-
-#ifndef HAVE_LRAND48
-extern "C" {
-	extern void srand48(long seed);
-	extern long lrand48(void);
-}
-#endif
 
 const char *AbsRndNumGenerator::hex1 = "0123456789ABCDEF";
 
@@ -67,7 +61,7 @@ AbsRndNumGenerator::~AbsRndNumGenerator()
  * Factory method to create random number generators.
  */
 AbsRndNumGenerator*
-AbsRndNumGenerator::make_rndnum_generator(RNDNUM_GENERATOR impl, const unsigned long seed)
+AbsRndNumGenerator::make_rndnum_generator(RNDNUM_GENERATOR impl, const uint64_t seed)
 {
 	AbsRndNumGenerator *rImpl = 0;
 
@@ -87,48 +81,19 @@ AbsRndNumGenerator::make_rndnum_generator(RNDNUM_GENERATOR impl, const unsigned 
 	return rImpl;
 }
 
+static pcg64 engine;
+
 void
-AbsRndNumGenerator::seedrand(const unsigned long seed )
+AbsRndNumGenerator::seedrand(const uint64_t seed )
 {
-#ifdef HAVE_SRAND48_DETERMINISTIC
-	// OpenBSD requires a special call to activate the standard,
-	// deterministic behavior of `lrand48'.
-	srand48_deterministic(seed);
-#else
-	srand48(seed);
-#endif
+	engine.seed(seed);
 }
-
-/*
- * Return random shuffled integers in set [0...n]
- * Note: deprecated.
- */
-#if 0
-unsigned int*
-AbsRndNumGenerator::rnd_shuffle(unsigned int n)
-{
-	unsigned int* ary = new unsigned int[n];
-	unsigned int i = 0;
-	unsigned int tmp;
-
-	for (i = 0; i < n; i++) {
-		ary[i] = i;
-	}
-
-	for (i = 0; i < n; i++) {
-		unsigned int j = rnd_upto(i);
-		tmp = ary[j];
-		ary[j] = ary[i];
-		ary[i] = tmp;
-	}
-	return ary;
-}
-#endif
 
 unsigned long
 AbsRndNumGenerator::genrand(void)
 {
-	return lrand48();
+	std::uniform_int_distribution<unsigned long> gen;
+	return gen(engine);
 }
 
 std::string
