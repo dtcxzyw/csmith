@@ -307,6 +307,14 @@ OutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 	out << endl;
 
 	out << "static long __undefined;" << endl;
+	out << R"(
+#define CSMITH_BUILTIN_SAFE(NAME, TYPE) static int builtin_safe_##NAME(TYPE x) { return x != 0 ? __builtin_##NAME(x) : (int)(sizeof(TYPE) * 8); }
+#define CSMITH_BUILTIN_SAFE_VARIANTS(NAME) CSMITH_BUILTIN_SAFE(NAME##s, short) CSMITH_BUILTIN_SAFE(NAME, int) CSMITH_BUILTIN_SAFE(NAME##l, long) CSMITH_BUILTIN_SAFE(NAME##ll, long long)
+CSMITH_BUILTIN_SAFE_VARIANTS(clz)
+CSMITH_BUILTIN_SAFE_VARIANTS(ctz)
+#define CSMITH_ABS(NAME, TYPE) static TYPE builtin_##NAME(TYPE x) { return x < 0 ? -x : x; }
+CSMITH_ABS(abs, int) CSMITH_ABS(absl, long) CSMITH_ABS(absll, long long)
+	)" << endl;
 	out << endl;
 
 	if (CGOptions::depth_protect()) {

@@ -758,19 +758,27 @@ Function::initialize_builtin_functions()
 	// supported type: Void, Char, UChar, Short, UShort, Int,
 	// 		   UInt, Long, ULong, Longlong, ULonglong
 	string builtin_function_strings[] = {
-		"Int; __builtin_clzs; (UShort); x86",
-		"Int; __builtin_clz; (UInt); x86",
-		"Int; __builtin_clzl; (ULong); x86",
-		"Int; __builtin_clzll; (ULonglong); x86",
+		"Int; builtin_safe_clzs; (UShort); x86",
+		"Int; builtin_safe_clz; (UInt); x86",
+		"Int; builtin_safe_clzl; (ULong); x86",
+		"Int; builtin_safe_clzll; (ULonglong); x86",
 
-		"Int; __builtin_ctzs; (UShort); x86",
-		"Int; __builtin_ctz; (UInt); x86",
-		"Int; __builtin_ctzl; (ULong); x86",
-        "Int; __builtin_ctzll; (ULonglong); x86",
+		"Int; builtin_safe_ctzs; (UShort); x86",
+		"Int; builtin_safe_ctz; (UInt); x86",
+		"Int; builtin_safe_ctzl; (ULong); x86",
+        "Int; builtin_safe_ctzll; (ULonglong); x86",
 
-		"Int; __builtin_clrsb; (UInt); x86",
-		"Int; __builtin_clrsbl; (ULong); x86",
-		"Int; __builtin_clrsbll; (ULonglong); x86",
+		"Int; builtin_abs; (Int); x86",
+		"Long; builtin_absl; (Long); x86",
+		"Longlong; builtin_absll; (Longlong); x86",
+
+		"Int; __builtin_ffs; (Int); x86",
+		"Int; __builtin_ffsl; (Long); x86",
+		"Int; __builtin_ffsll; (Longlong); x86",
+
+		"Int; __builtin_clrsb; (Int); x86",
+		"Int; __builtin_clrsbl; (Long); x86",
+		"Int; __builtin_clrsbll; (Longlong); x86",
 
 		"Int; __builtin_parity; (UInt); x86",
 		"Int; __builtin_parityl; (ULong); x86",
