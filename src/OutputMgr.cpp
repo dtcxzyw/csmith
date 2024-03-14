@@ -312,8 +312,14 @@ OutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 #define CSMITH_BUILTIN_SAFE_VARIANTS(NAME) CSMITH_BUILTIN_SAFE(NAME##s, short) CSMITH_BUILTIN_SAFE(NAME, int) CSMITH_BUILTIN_SAFE(NAME##l, long) CSMITH_BUILTIN_SAFE(NAME##ll, long long)
 CSMITH_BUILTIN_SAFE_VARIANTS(clz)
 CSMITH_BUILTIN_SAFE_VARIANTS(ctz)
-#define CSMITH_ABS(NAME, TYPE) static TYPE builtin_##NAME(TYPE x) { return x < 0 ? -x : x; }
-CSMITH_ABS(abs, int) CSMITH_ABS(absl, long) CSMITH_ABS(absll, long long)
+#define CSMITH_ABS(NAME, TYPE, MIN) static TYPE builtin_##NAME(TYPE x) { if (x == MIN) return MIN; return x < 0 ? -x : x; }
+CSMITH_ABS(abs, int, INT_MIN) CSMITH_ABS(absl, long, LONG_MIN) CSMITH_ABS(absll, long long, LLONG_MIN)
+#define CSMITH_MIN(NAME, TYPE) static TYPE builtin_##NAME(TYPE x, TYPE y) { return x < y ? x : y; }
+CSMITH_MIN(smin, int) CSMITH_MIN(sminl, long) CSMITH_MIN(sminll, long long)
+CSMITH_MIN(umin, unsigned) CSMITH_MIN(uminl, unsigned long) CSMITH_MIN(uminll, unsigned long long)
+#define CSMITH_MAX(NAME, TYPE) static TYPE builtin_##NAME(TYPE x, TYPE y) { return x > y ? x : y; }
+CSMITH_MAX(smax, int) CSMITH_MAX(smaxl, long) CSMITH_MAX(smaxll, long long)
+CSMITH_MAX(umax, unsigned) CSMITH_MAX(umaxl, unsigned long) CSMITH_MAX(umaxll, unsigned long long)
 	)" << endl;
 	out << endl;
 
