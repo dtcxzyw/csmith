@@ -758,6 +758,30 @@ Function::initialize_builtin_functions()
 	// supported type: Void, Char, UChar, Short, UShort, Int,
 	// 		   UInt, Long, ULong, Longlong, ULonglong
 	string builtin_function_strings[] = {
+		"Int; builtin_sadd_overflow; (Int, Int); x86",
+		"Int; builtin_saddl_overflow; (Long, Long); x86",
+		"Int; builtin_saddll_overflow; (Longlong, Longlong); x86",
+
+		"Int; builtin_ssub_overflow; (Int, Int); x86",
+		"Int; builtin_ssubl_overflow; (Long, Long); x86",
+		"Int; builtin_ssubll_overflow; (Longlong, Longlong); x86",
+
+		"Int; builtin_smul_overflow; (Int, Int); x86",
+		"Int; builtin_smull_overflow; (Long, Long); x86",
+		"Int; builtin_smulll_overflow; (Longlong, Longlong); x86",
+
+		"Int; builtin_uadd_overflow; (UInt, UInt); x86",
+		"Int; builtin_uaddl_overflow; (ULong, ULong); x86",
+		"Int; builtin_uaddll_overflow; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_usub_overflow; (UInt, UInt); x86",
+		"Int; builtin_usubl_overflow; (ULong, ULong); x86",
+		"Int; builtin_usubll_overflow; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_umul_overflow; (UInt, UInt); x86",
+		"Int; builtin_umull_overflow; (ULong, ULong); x86",
+		"Int; builtin_umulll_overflow; (ULonglong, ULonglong); x86",
+
 		"Int; builtin_safe_clzs; (UShort); x86",
 		"Int; builtin_safe_clz; (UInt); x86",
 		"Int; builtin_safe_clzl; (ULong); x86",

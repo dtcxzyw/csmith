@@ -308,7 +308,7 @@ OutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 
 	out << "static long __undefined;" << endl;
 	out << R"(
-#define CSMITH_BUILTIN_SAFE(NAME, TYPE) static int builtin_safe_##NAME(TYPE x) { return x != 0 ? __builtin_##NAME(x) : (int)(sizeof(TYPE) * 8); }
+#define CSMITH_BUILTIN_SAFE(NAME, TYPE) static int builtin_safe_##NAME(unsigned TYPE x) { return x != 0 ? __builtin_##NAME(x) : (int)(sizeof(TYPE) * 8); }
 #define CSMITH_BUILTIN_SAFE_VARIANTS(NAME) CSMITH_BUILTIN_SAFE(NAME##s, short) CSMITH_BUILTIN_SAFE(NAME, int) CSMITH_BUILTIN_SAFE(NAME##l, long) CSMITH_BUILTIN_SAFE(NAME##ll, long long)
 CSMITH_BUILTIN_SAFE_VARIANTS(clz)
 CSMITH_BUILTIN_SAFE_VARIANTS(ctz)
@@ -320,6 +320,9 @@ CSMITH_MIN(umin, unsigned) CSMITH_MIN(uminl, unsigned long) CSMITH_MIN(uminll, u
 #define CSMITH_MAX(NAME, TYPE) static TYPE builtin_##NAME(TYPE x, TYPE y) { return x > y ? x : y; }
 CSMITH_MAX(smax, int) CSMITH_MAX(smaxl, long) CSMITH_MAX(smaxll, long long)
 CSMITH_MAX(umax, unsigned) CSMITH_MAX(umaxl, unsigned long) CSMITH_MAX(umaxll, unsigned long long)
+#define CSMITH_OVERFLOW(NAME, TYPE) static TYPE builtin_##NAME##_overflow(TYPE x, TYPE y) { TYPE z; return __builtin_##NAME##_overflow(x, y, &z); }
+#define CSMITH_OVERFLOW_VARIANTS(NAME) CSMITH_OVERFLOW(s##NAME, int) CSMITH_OVERFLOW(s##NAME##l, long) CSMITH_OVERFLOW(s##NAME##ll, long long) CSMITH_OVERFLOW(u##NAME, unsigned int) CSMITH_OVERFLOW(u##NAME##l, unsigned long) CSMITH_OVERFLOW(u##NAME##ll, unsigned long long)
+CSMITH_OVERFLOW_VARIANTS(add) CSMITH_OVERFLOW_VARIANTS(sub) CSMITH_OVERFLOW_VARIANTS(mul)
 	)" << endl;
 	out << endl;
 
