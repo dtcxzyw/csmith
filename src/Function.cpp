@@ -796,6 +796,14 @@ Function::initialize_builtin_functions()
 		"Long; builtin_absl; (Long); x86",
 		"Longlong; builtin_absll; (Longlong); x86",
 
+		"Int; builtin_scmp; (Int, Int); x86",
+		"Long; builtin_scmpl; (Long, Long); x86",
+		"Longlong; builtin_scmpll; (Longlong, Longlong); x86",
+
+		"Int; builtin_ucmp; (Int, Int); x86",
+		"Long; builtin_ucmpl; (Long, Long); x86",
+		"Longlong; builtin_ucmpll; (Longlong, Longlong); x86",
+
 		"Int; builtin_smax; (Int, Int); x86",
 		"Long; builtin_smaxl; (Long, Long); x86",
 		"Longlong; builtin_smaxll; (Longlong, Longlong); x86",
