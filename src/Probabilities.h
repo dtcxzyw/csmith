@@ -34,6 +34,7 @@
 #include <map>
 #include <vector>
 #include <ostream>
+#include <cstdint>
 #include "Filter.h"
 
 template <class Key, class Value>

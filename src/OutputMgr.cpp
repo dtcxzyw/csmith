@@ -289,10 +289,11 @@ OutputMgr::OutputHeader(int argc, char *argv[], uint64_t seed)
 		out << "#define NO_LONGLONG" << std::endl;
 		out << endl;
 	}
-	if (CGOptions::enable_float()) {
-		out << "#include <float.h>\n";
-		out << "#include <math.h>\n";
-	}
+	// if (CGOptions::enable_float()) {
+	out << "#include <float.h>\n";
+	out << "#include <math.h>\n";
+	out << "#include <string.h>\n";
+	// }
 
 	ExtensionMgr::OutputHeader(out);
 
@@ -326,6 +327,44 @@ CSMITH_OVERFLOW_VARIANTS(add) CSMITH_OVERFLOW_VARIANTS(sub) CSMITH_OVERFLOW_VARI
 #define CSMITH_CMP(NAME, TYPE) static TYPE builtin_##NAME(TYPE x, TYPE y) { return (TYPE)(x > y) - (TYPE)(x < y); }
 CSMITH_CMP(scmp, int) CSMITH_CMP(scmpl, long) CSMITH_CMP(scmpll, long long)
 CSMITH_CMP(ucmp, unsigned) CSMITH_CMP(ucmpl, unsigned long) CSMITH_CMP(ucmpll, unsigned long long)
+#define CSMITH_RET_FP(X, TYPE) TYPE int_##X; memcpy(&int_##X, &X, sizeof(X)); return int_##X
+#define CSMITH_ARG_FP(X, TYPE) TYPE fp_##X; memcpy(&fp_##X, &X, sizeof(X))
+#define CSMITH_BINOP(OPNAME, OP, TYPE, FPTYPE, FPNAME) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); FPTYPE c = fp_a OP fp_b; CSMITH_RET_FP(c, TYPE); }
+#define CSMITH_BINFUNC(OPNAME, TYPE, FPTYPE, FPNAME, SUFFIX) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); FPTYPE c = OPNAME##SUFFIX(fp_a, fp_b); CSMITH_RET_FP(c, TYPE); }
+#define CSMITH_RELATION(OPNAME, OP, TYPE, FPTYPE, FPNAME) static int builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); return fp_a OP fp_b; }
+#define CSMITH_UNFUNC(OPNAME, TYPE, FPTYPE, FPNAME, SUFFIX) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a) { CSMITH_ARG_FP(a, FPTYPE); FPTYPE c = OPNAME##SUFFIX(fp_a); CSMITH_RET_FP(c, TYPE); }
+#define CSMITH_UNOP(OPNAME, OP, TYPE, FPTYPE, FPNAME) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a) { CSMITH_ARG_FP(a, FPTYPE); FPTYPE c = OP (fp_a); CSMITH_RET_FP(c, TYPE); }
+#define CSMITH_PRED(OPNAME, TYPE, FPTYPE, FPNAME) static int builtin_##OPNAME##_##FPNAME(TYPE a) { CSMITH_ARG_FP(a, FPTYPE); return OPNAME(fp_a); }
+#define CSMITH_TRIFUNC(OPNAME, TYPE, FPTYPE, FPNAME, SUFFIX) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b, TYPE c) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); CSMITH_ARG_FP(c, FPTYPE); FPTYPE d = OPNAME##SUFFIX(fp_a, fp_b, fp_c); CSMITH_RET_FP(d, TYPE); }
+
+#define CSMITH_FPOP(TYPE, FPTYPE, FPNAME, SUFFIX) \
+	CSMITH_BINOP(fadd, +, TYPE, FPTYPE, FPNAME) \
+	CSMITH_BINOP(fsub, -, TYPE, FPTYPE, FPNAME) \
+	CSMITH_BINOP(fmul, *, TYPE, FPTYPE, FPNAME) \
+	CSMITH_BINOP(fdiv, /, TYPE, FPTYPE, FPNAME) \
+	CSMITH_RELATION(olt, <, TYPE, FPTYPE, FPNAME) \
+	CSMITH_RELATION(ole, <=, TYPE, FPTYPE, FPNAME) \
+	CSMITH_RELATION(ogt, >, TYPE, FPTYPE, FPNAME) \
+	CSMITH_RELATION(oge, >=, TYPE, FPTYPE, FPNAME) \
+	CSMITH_RELATION(oeq, ==, TYPE, FPTYPE, FPNAME) \
+	CSMITH_RELATION(one, !=, TYPE, FPTYPE, FPNAME) \
+	CSMITH_BINFUNC(fmax, TYPE, FPTYPE, FPNAME, SUFFIX) \
+	CSMITH_BINFUNC(fmin, TYPE, FPTYPE, FPNAME, SUFFIX) \
+	CSMITH_BINFUNC(copysign, TYPE, FPTYPE, FPNAME, SUFFIX) \
+	CSMITH_UNFUNC(fabs, TYPE, FPTYPE, FPNAME, SUFFIX) \
+	CSMITH_PRED(isnan, TYPE, FPTYPE, FPNAME) \
+	CSMITH_PRED(isinf, TYPE, FPTYPE, FPNAME) \
+	CSMITH_PRED(isfinite, TYPE, FPTYPE, FPNAME) \
+	CSMITH_PRED(isnormal, TYPE, FPTYPE, FPNAME) \
+	CSMITH_UNOP(fneg, -, TYPE, FPTYPE, FPNAME) \
+	CSMITH_TRIFUNC(fma, TYPE, FPTYPE, FPNAME, SUFFIX) \
+
+#define CSMITH_FLOAT_SUFFIX f
+#define CSMTIH_DOUBLE_SUFFIX
+CSMITH_FPOP(unsigned, float, f32, CSMITH_FLOAT_SUFFIX)
+CSMITH_FPOP(unsigned long long, double, f64, CSMTIH_DOUBLE_SUFFIX)
+unsigned long long builtin_f32_to_f64(unsigned a) { CSMITH_ARG_FP(a, float); double b = (double)(fp_a); CSMITH_RET_FP(b, unsigned long long); }
+unsigned builtin_f64_to_f32(unsigned long long a) { CSMITH_ARG_FP(a, double); float b = (float)(fp_a); CSMITH_RET_FP(b, unsigned); }
 	)" << endl;
 	out << endl;
 

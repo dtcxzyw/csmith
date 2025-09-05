@@ -820,6 +820,69 @@ Function::initialize_builtin_functions()
 		"ULong; builtin_uminl; (ULong, ULong); x86",
 		"ULonglong; builtin_uminll; (ULonglong, ULonglong); x86",
 
+		"UInt; builtin_fadd_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_fadd_f64; (ULonglong, ULonglong); x86",
+
+		"UInt; builtin_fsub_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_fsub_f64; (ULonglong, ULonglong); x86",
+
+		"UInt; builtin_fmul_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_fmul_f64; (ULonglong, ULonglong); x86",
+
+		"UInt; builtin_fdiv_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_fdiv_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_olt_f32; (UInt, UInt); x86",
+		"Int; builtin_olt_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_ole_f32; (UInt, UInt); x86",
+		"Int; builtin_ole_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_ogt_f32; (UInt, UInt); x86",
+		"Int; builtin_ogt_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_oge_f32; (UInt, UInt); x86",
+		"Int; builtin_oge_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_oeq_f32; (UInt, UInt); x86",
+		"Int; builtin_oeq_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_one_f32; (UInt, UInt); x86",
+		"Int; builtin_one_f64; (ULonglong, ULonglong); x86",
+
+		"Int; builtin_isnan_f32; (UInt); x86",
+		"Int; builtin_isnan_f64; (ULonglong); x86",
+
+		"Int; builtin_isinf_f32; (UInt); x86",
+		"Int; builtin_isinf_f64; (ULonglong); x86",
+
+		"Int; builtin_isfinite_f32; (UInt); x86",
+		"Int; builtin_isfinite_f64; (ULonglong); x86",
+
+		"Int; builtin_isnormal_f32; (UInt); x86",
+		"Int; builtin_isnormal_f64; (ULonglong); x86",
+
+		"ULonglong; builtin_f32_to_f64; (UInt); x86",
+		"UInt; builtin_f64_to_f32; (ULonglong); x86",
+
+		"UInt; builtin_fma_f32; (UInt, UInt, UInt); x86",
+		"ULonglong; builtin_fma_f64; (ULonglong, ULonglong, ULonglong); x86",
+
+		"UInt; builtin_fmin_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_fmin_f64; (ULonglong, ULonglong); x86",
+
+		"UInt; builtin_fmax_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_fmax_f64; (ULonglong, ULonglong); x86",
+
+		"UInt; builtin_copysign_f32; (UInt, UInt); x86",
+		"ULonglong; builtin_copysign_f64; (ULonglong, ULonglong); x86",
+
+		"UInt; builtin_fabs_f32; (UInt); x86",
+		"ULonglong; builtin_fabs_f64; (ULonglong); x86",
+
+		"UInt; builtin_fneg_f32; (UInt); x86",
+		"ULonglong; builtin_fneg_f64; (ULonglong); x86",
+
 		"Int; __builtin_ffs; (Int); x86",
 		"Int; __builtin_ffsl; (Long); x86",
 		"Int; __builtin_ffsll; (Longlong); x86",

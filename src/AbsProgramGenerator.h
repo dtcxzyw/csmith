@@ -31,6 +31,7 @@
 #define ABS_PROGRAM_GENERATOR_H
 
 #include <string>
+#include <cstdint>
 
 class OutputMgr;
 
