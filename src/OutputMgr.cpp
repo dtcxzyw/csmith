@@ -363,8 +363,8 @@ CSMITH_CMP(ucmp, unsigned) CSMITH_CMP(ucmpl, unsigned long) CSMITH_CMP(ucmpll, u
 #define CSMTIH_DOUBLE_SUFFIX
 CSMITH_FPOP(unsigned, float, f32, CSMITH_FLOAT_SUFFIX)
 CSMITH_FPOP(unsigned long long, double, f64, CSMTIH_DOUBLE_SUFFIX)
-unsigned long long builtin_f32_to_f64(unsigned a) { CSMITH_ARG_FP(a, float); double b = (double)(fp_a); CSMITH_RET_FP(b, unsigned long long); }
-unsigned builtin_f64_to_f32(unsigned long long a) { CSMITH_ARG_FP(a, double); float b = (float)(fp_a); CSMITH_RET_FP(b, unsigned); }
+static unsigned long long builtin_f32_to_f64(unsigned a) { CSMITH_ARG_FP(a, float); double b = (double)(fp_a); CSMITH_RET_FP(b, unsigned long long); }
+static unsigned builtin_f64_to_f32(unsigned long long a) { CSMITH_ARG_FP(a, double); float b = (float)(fp_a); CSMITH_RET_FP(b, unsigned); }
 	)" << endl;
 	out << endl;
 
