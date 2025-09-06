@@ -328,7 +328,7 @@ CSMITH_OVERFLOW_VARIANTS(add) CSMITH_OVERFLOW_VARIANTS(sub) CSMITH_OVERFLOW_VARI
 CSMITH_CMP(scmp, int) CSMITH_CMP(scmpl, long) CSMITH_CMP(scmpll, long long)
 CSMITH_CMP(ucmp, unsigned) CSMITH_CMP(ucmpl, unsigned long) CSMITH_CMP(ucmpll, unsigned long long)
 #define CSMITH_RET_FP(X, TYPE) TYPE int_##X; uint64_t CanonicalNaN = 0x7ff8000000000000; memcpy(&int_##X, isnan(X) ? (void*)&CanonicalNaN : (void*)&X, sizeof(X)); return int_##X
-#define CSMITH_ARG_FP(X, TYPE) TYPE fp_##X; memcpy(&fp_##X, &X, sizeof(X))
+#define CSMITH_ARG_FP(X, TYPE) TYPE fp_##X; memcpy(&fp_##X, &X, sizeof(X)); if (isnan(fp_##X)) { fp_##X = (TYPE)NAN; }
 #define CSMITH_BINOP(OPNAME, OP, TYPE, FPTYPE, FPNAME) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); FPTYPE c = fp_a OP fp_b; CSMITH_RET_FP(c, TYPE); }
 #define CSMITH_BINFUNC(OPNAME, TYPE, FPTYPE, FPNAME, SUFFIX) static TYPE builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); FPTYPE c = OPNAME##SUFFIX(fp_a, fp_b); CSMITH_RET_FP(c, TYPE); }
 #define CSMITH_RELATION(OPNAME, OP, TYPE, FPTYPE, FPNAME) static int builtin_##OPNAME##_##FPNAME(TYPE a, TYPE b) { CSMITH_ARG_FP(a, FPTYPE); CSMITH_ARG_FP(b, FPTYPE); return fp_a OP fp_b; }
